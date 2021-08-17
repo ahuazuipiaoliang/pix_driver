@@ -35,7 +35,21 @@ You should calibrate dynamics of chassis before you use.
 <!-- Required -->
 <!-- Things to consider:
     - How do you use the package / API? -->
+before you use this package, you have to install package [ros2_socketcan](https://github.com/autowarefoundation/ros2_socketcan) a package and run sockcan_receiver and sockcan_sender.
 
+usage:
+1. read the feedbabck from chassis
+```shell
+ros2 run pix_driver pix_driver_read
+```
+2. control chassis using pix_driver
+```shell
+ros2 run pix_driver pix_driver_write
+```
+3. send control command example
+```shell
+ros2 topic pub -r 50 /pix_control_cmd pix_driver_msg/msg/PixloopControl "{left_light: true, speed: 400, steering: 1023, self_driving_enable: true, gear_shift: 1, mode_selection: 2, front_light: true}"
+```
 
 # Inner-workings / Algorithms
 <!-- If applicable -->

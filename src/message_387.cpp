@@ -205,14 +205,6 @@ void Auto_control_387::decode_Speed_mode_387()
     strcpy(Speed_mode_387.unit, "");
 }
 
-void Auto_control_387::reset_data()
-{
-    for(uint i=0;i<8;i++)
-    {
-        data_matrix[i] = 0;
-    }
-}
-
 void Auto_control_387::set_right_light_387(double data)
 {
     int signal_value = static_cast<int>((data-right_light_387.bias)/right_light_387.factor);
@@ -321,6 +313,19 @@ void Auto_control_387::set_Speed_mode_387(double data)
     uint8_t t_0;
     t_0 = static_cast<unsigned char>(signal_value << 6);
     data_matrix[7] += t_0;
+}
+
+uint8_t * Auto_control_387::get_matrix_data()
+{
+    return data_matrix;
+}
+
+void Auto_control_387::reset_data()
+{
+    for(uint i=0;i<8;i++)
+    {
+        data_matrix[i] = 0;
+    }
 }
 
 void Auto_control_387::set_message_data(

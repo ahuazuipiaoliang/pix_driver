@@ -30,28 +30,13 @@ struct Message_data_403{
 class Auto_data_feedback_403
 {
     public:
-        Signal Emergency_stop_feedback_403;
-        Signal Vehicle_mode_feedback_403;
-        Signal Vehicle_status_feedback_403;
-        Signal Braking_light_feedback_403;
-        Signal Tail_light_feedback_403;
-        Signal R_steer_light_feedback_403;
-        Signal L_steer_light_feedback_403;
-        Signal mode_feedback_403;
-        Signal Gear_feedback_403;
-        Signal Braking_feedback_403;
-        Signal F_steer_feedback_403;
-        Signal Speed_feedback_403;
-
         Auto_data_feedback_403();
-
-        uint frame_id;
-        uint8_t data_matrix[8];
 
         Message_data_403 data_403;
         
         void decoded_signal();
 
+        // decode signals of frame 387 using functions below
         void decode_Vehicle_status_feedback_403();
         void decode_R_steer_light_feedback_403();
         void decode_mode_feedback_403();
@@ -65,6 +50,7 @@ class Auto_data_feedback_403
         void decode_Vehicle_mode_feedback_403();
         void decode_Emergency_stop_feedback_403();
 
+        // set signal values for 387 frame
         void set_Emergency_stop_feedback_403();
         void set_Vehicle_mode_feedback_403();
         void set_Vehicle_status_feedback_403();
@@ -78,10 +64,28 @@ class Auto_data_feedback_403
         void set_F_steer_feedback_403();
         void set_Speed_feedback_403();
 
+        // get data from data_matrix
+        uint8_t * get_matrix_data();
+        //reset data_matrix as all 0
         void reset_data();
 
         void update_data(uint8_t can_data[8]);
+    
+    private:
+        uint8_t data_matrix[8];
 
+        Signal Emergency_stop_feedback_403;
+        Signal Vehicle_mode_feedback_403;
+        Signal Vehicle_status_feedback_403;
+        Signal Braking_light_feedback_403;
+        Signal Tail_light_feedback_403;
+        Signal R_steer_light_feedback_403;
+        Signal L_steer_light_feedback_403;
+        Signal mode_feedback_403;
+        Signal Gear_feedback_403;
+        Signal Braking_feedback_403;
+        Signal F_steer_feedback_403;
+        Signal Speed_feedback_403;
 };
 
 

@@ -5,7 +5,7 @@
   <version>0.0.0</version>
   <description>PIXLOOP CHASSIS DRIVER FOR ROS2</description>
   <maintainer email="mark@pixmoving.net">ahua</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache 2 License</license>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
   <buildtool_depend>autoware_auto_cmake</buildtool_depend>

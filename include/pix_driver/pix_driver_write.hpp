@@ -15,8 +15,21 @@ namespace autoware
 {
 namespace drivers
 {
-namespace pix_driver_ros2
+namespace pix_driver
 {
+
+class PixDriverWrite : public rclcpp::Node
+{
+    public:
+        PixDriverWrite();
+    private:
+        Auto_control_387 auto_control;
+        void topic_callback(const pix_driver_msg::msg::PixloopControl::SharedPtr msg);
+
+        rclcpp::Subscription<pix_driver_msg::msg::PixloopControl>::SharedPtr sub_;
+        rclcpp::Publisher<can_msgs::msg::Frame>::SharedPtr pub_;
+};
+
 } // namespace pix_driver
 } // namespace drivers
 } // namespace autoware

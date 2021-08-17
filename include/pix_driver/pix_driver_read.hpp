@@ -17,6 +17,19 @@ namespace drivers
 {
 namespace pix_driver
 {
+
+class PixDriverRead : public rclcpp::Node
+{
+    public:
+        PixDriverRead();
+        Auto_data_feedback_403 auto_data_feedback;
+    
+    private:
+        void topic_callback(const can_msgs::msg::Frame::SharedPtr msg);
+        rclcpp::Subscription<can_msgs::msg::Frame>::SharedPtr sub_;
+        rclcpp::Publisher<pix_driver_msg::msg::PixloopFeedback>::SharedPtr pub_;
+};
+
 } // namespace pix_driver
 } // namespace drivers
 } // namespace autoware

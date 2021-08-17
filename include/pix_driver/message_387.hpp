@@ -34,27 +34,10 @@ struct Message_data_387{
 class Auto_control_387
 {
     public:
-        Signal right_light_387;
-        Signal left_light_387;
-        Signal self_driving_enable_387;
-        Signal EPB_387;
-        Signal Gear_shift_387;
-        Signal Braking_387;
-        Signal Speed_387;
-        Signal Steering_387;
-        Signal mode_selection_387;
-        Signal Front_light_387;
-        Signal State_control_387;
-        Signal Advanced_mode_387;
-        Signal Speed_mode_387;
         Auto_control_387();
+       // ~Auto_control_387();
 
-        uint frame_id;
-        uint8_t data_matrix[8];
-
-        Message_data_387 data_387;
-        
-        void decoded_signal();
+        // decode signals of frame 387 using functions below
         void decode_right_light_387();
         void decode_left_light_387();
         void decode_self_driving_enable_387();
@@ -69,7 +52,7 @@ class Auto_control_387
         void decode_Advanced_mode_387();
         void decode_Speed_mode_387();
 
-
+        // set signal values for 387 frame
         void set_right_light_387(double data);
         void set_left_light_387(double data);
         void set_self_driving_enable_387(double data);
@@ -84,6 +67,7 @@ class Auto_control_387
         void set_Advanced_mode_387(double data);
         void set_Speed_mode_387(double data);
 
+        uint8_t * get_matrix_data();
         void reset_data();
         void set_message_data(
             int right_light_387,
@@ -100,6 +84,28 @@ class Auto_control_387
             int Advanced_mode_387,
             int Speed_mode_387);
         void encode_data();
+
+        Message_data_387 data_387;
+        
+    private:
+
+        Signal right_light_387;
+        Signal left_light_387;
+        Signal self_driving_enable_387;
+        Signal EPB_387;
+        Signal Gear_shift_387;
+        Signal Braking_387;
+        Signal Speed_387;
+        Signal Steering_387;
+        Signal mode_selection_387;
+        Signal Front_light_387;
+        Signal State_control_387;
+        Signal Advanced_mode_387;
+        Signal Speed_mode_387;
+
+        uint8_t data_matrix[8];
+
+
 
 };
 } // pix_driver

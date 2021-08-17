@@ -330,6 +330,11 @@ void Auto_data_feedback_403::set_Speed_feedback_403()
     data_403.speed_feedback_403 = signal_value;
 }
 
+uint8_t * Auto_data_feedback_403::get_matrix_data()
+{
+    return data_matrix;
+}
+
 void Auto_data_feedback_403::update_data(uint8_t can_data[8])
 {
     for(uint i=0;i<8;i++)
