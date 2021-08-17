@@ -1,0 +1,1 @@
+ros2 topic pub -r 50 /pix_control_cmd pix_driver_msg/msg/PixloopControl "{left_light: true, speed: 400, steering: 1023, self_driving_enable: true, gear_shift: 1, mode_selection: 2, front_light: true}"
