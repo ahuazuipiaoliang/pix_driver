@@ -19,53 +19,32 @@ We want to using Autoware.auto with PIXLOOP chassis, since we develop this ros2 
     - How does it work? -->
 Using third party socket can driver for receiving and sending canbus messages in order to get access to the canbus interface of chassis.
 
+These classes are a thin wrapper around C functions to convert canbus messages and signals.
 
-These classes are a thin wrapper around C functions to manage some extra book-keeping.
+Subscribe "can_msgs/Frame" message from topic "/from_can_bus" to decode 0x193 frame, which decode the feedback frame from chassis, then puiblish "pix_driver_msg/PixloopFeedback" message .
 
-A typed interface for sending is also provided for compile-time checking of data sizes.
-
-A helper class following the named parameter idiom is provided to wrap the CAN ID.
-
-Sending and receiving are separate concerns and thus contained in separate classes.
-
-Finally, care is taken to avoid exposing C/POSIX headers.
+Subscribe "pix_driver_msg/PixloopControl" message from topic "/pix_control_cmd", using "pix_driver_write" to encode 0x183 canbus messages which is the control frame of chassis, then publish "can_msgs/Frame" message to topic "to_can_bus".
 
 ## Assumptions / Known limits
 <!-- Required -->
+Aware that this driver is only for pixloop chassis, different chassises have different dynamics.
 
-The concern for sender is only simple book-keeping and sending of data.
-
-The same is true for the receiver.
-
-Any complex error handling which would require receiving data is outside the concern of this class,
-and should be a part of a higher level class which contains an instance of this class.
+You should calibrate dynamics of chassis before you use.
 
 # Inputs / Outputs / API
 <!-- Required -->
 <!-- Things to consider:
     - How do you use the package / API? -->
 
-See the [sender API docs](@ref drivers::socketcan::SocketCanSender).
-and the [receiver API docs](@ref drivers::socketcan::SocketCanReceiver).
 
 # Inner-workings / Algorithms
 <!-- If applicable -->
 
-These classes have no substantive logic.
 
-Unix's select() function was used to wait for resource availability. On any error, an exception is
-thrown.
 
 # Error detection and handling
 <!-- Required -->
 
-Both the receiver and the sender classes throw exceptions in the following cases:
-1. On construction if the specified interface is invalid or cannot be bound
-2. If the file descriptor is unavailable within the timeout period for sending
-3. Any other Unix error is raised during the sending process
-
-Message-level error checking mechanisms a part of the CAN standard are outside the scope of this
-class.
 
 # Security considerations
 <!-- Required -->
