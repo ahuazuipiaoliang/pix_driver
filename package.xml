@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>pix_driver</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>PIXLOOP CHASSIS DRIVER FOR ROS2</description>
-  <maintainer email="mark@pixmoving.net">ahua</maintainer>
-  <license>Apache 2 License</license>
+  <maintainer email="mark@pixmoving.net">Mark Jin</maintainer>
+  <license>Apache 2.0 License</license>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
   <buildtool_depend>autoware_auto_cmake</buildtool_depend>
